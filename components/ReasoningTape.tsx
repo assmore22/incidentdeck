@@ -27,7 +27,7 @@ export function ReasoningTape({ incident, evidence }: { incident: Incident | und
             <p className="mt-2 text-xs leading-relaxed text-muted">{incident.publicSummary || incident.reasoningDigest || "No public summary."}</p>
           </>
         ) : (
-          <p className="mt-2 text-xs text-muted">Root cause not yet reviewed by GenLayer. Run “Review with GenLayer” to generate a verdict, confidence, and risk flags.</p>
+          <p className="mt-2 text-xs text-muted">Root cause not yet reviewed by GenLayer. Run Review with GenLayer to generate a verdict, confidence, and risk flags.</p>
         )}
       </div>
 
