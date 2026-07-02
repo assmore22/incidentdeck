@@ -110,7 +110,7 @@ function EvidenceForm({ run, busy, inc, onDone }: { run: Run; busy: boolean; inc
   const valid = isHttpUrl(url);
   return (
     <div className="space-y-3">
-      <div className="kicker">INC-{String(inc.id).padStart(3, "0")} · {inc.title}</div>
+      <div className="kicker">INC-{String(inc.id).padStart(3, "0")} | {inc.title}</div>
       <label className="block"><span className="label">Evidence URL (http/https)</span><input className="field mt-1.5" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://status.example.com/incident/123" /></label>
       {url && !valid && <div className="text-2xs text-critical">Must be a valid http(s) URL.</div>}
       <div className="grid grid-cols-2 gap-3">
@@ -137,7 +137,7 @@ function TimelineForm({ run, busy, inc, onDone }: { run: Run; busy: boolean; inc
   const valid = description.trim().length > 2;
   return (
     <div className="space-y-3">
-      <div className="kicker">INC-{String(inc.id).padStart(3, "0")} · {inc.title}</div>
+      <div className="kicker">INC-{String(inc.id).padStart(3, "0")} | {inc.title}</div>
       <div className="grid grid-cols-2 gap-3">
         <label className="block"><span className="label">Event type</span>
           <select className="field mt-1.5" value={eventType} onChange={(e) => setEventType(e.target.value)}>
@@ -167,7 +167,7 @@ function RootCauseForm({ run, busy, inc, onDone }: { run: Run; busy: boolean; in
   const valid = claim.trim().length > 8;
   return (
     <div className="space-y-3">
-      <div className="kicker">INC-{String(inc.id).padStart(3, "0")} · {inc.title}</div>
+      <div className="kicker">INC-{String(inc.id).padStart(3, "0")} | {inc.title}</div>
       <label className="block"><span className="label">Root cause claim</span><textarea className="field mt-1.5 min-h-[90px]" value={claim} onChange={(e) => setClaim(e.target.value)} placeholder="A connection-pool exhaustion in the gateway client caused cascading latency…" /></label>
       <div>
         <span className="label">Supporting evidence ids</span>
@@ -194,7 +194,7 @@ function RemediationForm({ run, busy, inc, onDone }: { run: Run; busy: boolean; 
   const valid = claim.trim().length > 4 && isHttpUrl(proof);
   return (
     <div className="space-y-3">
-      <div className="kicker">INC-{String(inc.id).padStart(3, "0")} · {inc.title}</div>
+      <div className="kicker">INC-{String(inc.id).padStart(3, "0")} | {inc.title}</div>
       <label className="block"><span className="label">Remediation claim</span><textarea className="field mt-1.5 min-h-[80px]" value={claim} onChange={(e) => setClaim(e.target.value)} placeholder="Restored pool size, added saturation alerts and a deploy guardrail…" /></label>
       <label className="block"><span className="label">Proof URL (http/https)</span><input className="field mt-1.5" value={proof} onChange={(e) => setProof(e.target.value)} placeholder="https://github.com/org/repo/pull/123" /></label>
       {proof && !isHttpUrl(proof) && <div className="text-2xs text-critical">Must be a valid http(s) URL.</div>}
@@ -213,7 +213,7 @@ function DisputeForm({ run, busy, inc, onDone, kind }: { run: Run; busy: boolean
   const valid = claim.trim().length > 6 && isHttpUrl(url);
   return (
     <div className="space-y-3">
-      <div className="kicker">INC-{String(inc.id).padStart(3, "0")} · {inc.title}</div>
+      <div className="kicker">INC-{String(inc.id).padStart(3, "0")} | {inc.title}</div>
       {kind === "challenge" && (
         <label className="block"><span className="label">Challenge type</span>
           <select className="field mt-1.5" value={ctype} onChange={(e) => setCtype(e.target.value)}>

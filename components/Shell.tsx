@@ -4,10 +4,9 @@ import { type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleDot, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { faCircleDot } from "@fortawesome/free-solid-svg-icons";
 import { IncidentDeckLogo } from "./IncidentDeckLogo";
 import { WalletConnect } from "./WalletConnect";
-import { WALLETCONNECT_PROJECT_ID } from "@/app/providers";
 import { hasContract, CONTRACT } from "@/lib/incidentdeck";
 import { CHAIN_ID } from "@/lib/studionet";
 import { truncateHex } from "@/lib/format";
@@ -32,9 +31,9 @@ export function Shell({ children }: { children: ReactNode }) {
             <FontAwesomeIcon icon={faCircleDot} className={`h-2.5 w-2.5 ${hasContract() ? "text-verified" : "text-critical"} animate-pulsedot`} />
             {hasContract() ? "contract live" : "no contract"}
           </span>
-          <span className="hidden text-faint sm:inline">·</span>
+          <span className="hidden text-faint sm:inline">|</span>
           <span className="hidden text-muted sm:inline">Studionet <span className="mono">{CHAIN_ID}</span></span>
-          <span className="hidden text-faint sm:inline">·</span>
+          <span className="hidden text-faint sm:inline">|</span>
           {hasContract() && <span className="mono hidden text-faint md:inline">{truncateHex(CONTRACT, 8, 6)}</span>}
           <span className="ml-auto" />
           <span className="hidden text-faint md:inline">GEN testnet</span>
@@ -65,13 +64,6 @@ export function Shell({ children }: { children: ReactNode }) {
           ))}
         </nav>
       </header>
-
-      {!WALLETCONNECT_PROJECT_ID && (
-        <div className="border-b border-degraded/30 bg-degraded/5 px-3 py-1.5 text-2xs text-muted lg:px-4">
-          <FontAwesomeIcon icon={faTriangleExclamation} className="mr-1.5 h-3 w-3 text-degraded" />
-          <span className="font-semibold text-ink">Local dev:</span> no WalletConnect project id - injected wallets (MetaMask) work; the WalletConnect QR flow is disabled.
-        </div>
-      )}
 
       <main className="w-full flex-1">{children}</main>
     </div>

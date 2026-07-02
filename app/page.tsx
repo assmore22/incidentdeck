@@ -77,7 +77,7 @@ export default function OperationsPage() {
     <div className="panel p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
-          <div className="kicker">INC-{String(inc.id).padStart(3, "0")} · reported by</div>
+          <div className="kicker">INC-{String(inc.id).padStart(3, "0")} | reported by</div>
           <div className="mt-0.5"><Hex value={inc.reporter} /></div>
         </div>
         <div className="flex items-center gap-2"><SeverityChip severity={inc.severity} /><StatusChip status={inc.status} /><VerdictChip verdict={inc.rootCauseVerdict} /></div>
@@ -105,7 +105,7 @@ export default function OperationsPage() {
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <div>
           <div className="kicker flex items-center gap-2"><FontAwesomeIcon icon={faChartGantt} className="h-3 w-3 text-signal" /> Incident operations</div>
-          <div className="text-sm text-muted">{incidents.length} incident{incidents.length === 1 ? "" : "s"} on the deck · live root-cause verification</div>
+          <div className="text-sm text-muted">{incidents.length} incident{incidents.length === 1 ? "" : "s"} on the deck | live root-cause verification</div>
         </div>
         <button className="btn btn-ghost btn-xs" onClick={reloadAll}><FontAwesomeIcon icon={faRotateRight} className={`h-3 w-3 ${list.loading ? "animate-spin" : ""}`} /> Refresh</button>
       </div>
@@ -122,7 +122,7 @@ export default function OperationsPage() {
           <div className="panel p-3">
             <div className="mb-2 flex items-center justify-between">
               <span className="kicker">Incident timeline</span>
-              {inc && <span className="flex items-center gap-2 text-2xs text-muted"><span className="h-2 w-2 rounded-full" style={{ background: VERDICT_HEX[inc.rootCauseVerdict] }} /> {inc.rootCauseVerdict} · {bpsToPct(inc.confidenceBps)}%</span>}
+              {inc && <span className="flex items-center gap-2 text-2xs text-muted"><span className="h-2 w-2 rounded-full" style={{ background: VERDICT_HEX[inc.rootCauseVerdict] }} /> {inc.rootCauseVerdict} | {bpsToPct(inc.confidenceBps)}%</span>}
             </div>
             {loadingBundle && nodes.length === 0 ? <TimelineSkeleton /> : <IncidentTimeline nodes={nodes} selectedKey={selNode} onSelect={(n) => setSelNode(n.key)} />}
           </div>

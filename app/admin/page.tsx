@@ -29,13 +29,13 @@ export default function AdminPage() {
         <div className="panel p-4">
           <div className="kicker mb-1 flex items-center gap-2"><FontAwesomeIcon icon={faShieldHalved} className="h-3 w-3 text-evidence" /> Wallet & contract</div>
           <Row k="Project">{DEPLOYMENT.name}</Row>
-          <Row k="Network">{DEPLOYMENT.network} · {DEPLOYMENT.chainId}</Row>
+          <Row k="Network">{DEPLOYMENT.network} | {DEPLOYMENT.chainId}</Row>
           <Row k="Deployer (public)"><Hex value={DEPLOYMENT.deployer} /></Row>
-          <Row k="Faucet"><span className="text-verified">{DEPLOYMENT.faucetStatus}</span> · {DEPLOYMENT.balanceGEN} GEN</Row>
+          <Row k="Faucet"><span className="text-verified">{DEPLOYMENT.faucetStatus}</span> | {DEPLOYMENT.balanceGEN} GEN</Row>
           <Row k="Faucet tx"><a className="mono text-xs text-evidence hover:underline" href={explorerTx(DEPLOYMENT.faucetTxHash)} target="_blank" rel="noreferrer">view ↗</a></Row>
           <Row k="Contract"><Hex value={DEPLOYMENT.contractAddress} /></Row>
           <Row k="Deploy tx"><a className="mono text-xs text-evidence hover:underline" href={explorerTx(DEPLOYMENT.deployTxHash)} target="_blank" rel="noreferrer">view ↗</a></Row>
-          <Row k="Contract size">{DEPLOYMENT.contractBytes.toLocaleString()} bytes · {DEPLOYMENT.writeMethods}w / {DEPLOYMENT.viewMethods}v</Row>
+          <Row k="Contract size">{DEPLOYMENT.contractBytes.toLocaleString()} bytes | {DEPLOYMENT.writeMethods}w / {DEPLOYMENT.viewMethods}v</Row>
           <Row k="Frontend"><a className="text-evidence hover:underline" href={DEPLOYMENT.frontendLocalUrl}>{DEPLOYMENT.frontendLocalUrl}</a></Row>
           <Row k="Explorer"><a className="text-evidence hover:underline" href={explorerContract(DEPLOYMENT.contractAddress)} target="_blank" rel="noreferrer">contract ↗</a></Row>
         </div>
@@ -52,7 +52,7 @@ export default function AdminPage() {
               <Row k="Finalized / archived">{stats.data.finalized} / {stats.data.archived}</Row>
               <Row k="Audit records">{stats.data.audits}</Row>
               <Row k="Reporters">{stats.data.reporters}</Row>
-              <Row k="Deck quality">{quality.data ? `${bpsToPct(quality.data.qualityBps)}% (reviewed ${bpsToPct(quality.data.reviewedRatioBps)}% · finalized ${bpsToPct(quality.data.finalizedRatioBps)}%)` : "-"}</Row>
+              <Row k="Deck quality">{quality.data ? `${bpsToPct(quality.data.qualityBps)}% (reviewed ${bpsToPct(quality.data.reviewedRatioBps)}% | finalized ${bpsToPct(quality.data.finalizedRatioBps)}%)` : "-"}</Row>
             </>
           ) : <div className="py-6 text-center text-sm text-muted">{stats.loading ? "loading on-chain state…" : "no contract configured"}</div>}
         </div>

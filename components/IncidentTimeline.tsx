@@ -108,7 +108,7 @@ export function IncidentTimeline({ nodes, selectedKey, onSelect }: { nodes: TNod
       {tip && (
         <div className="pointer-events-none absolute z-20 max-w-[280px] panel2 px-2.5 py-1.5 text-xs shadow-pop"
           style={{ left: Math.min(tip.x + 12, (wrapRef.current?.clientWidth ?? 600) - 280), top: tip.y + 12 }}>
-          <div className="font-semibold text-ink">{tip.n.lane} · {tip.n.label}</div>
+          <div className="font-semibold text-ink">{tip.n.lane} | {tip.n.label}</div>
           <div className="mt-0.5 text-muted">{tip.n.detail}</div>
         </div>
       )}

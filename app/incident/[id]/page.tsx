@@ -83,11 +83,11 @@ export default function IncidentDetail() {
               <div className="grid gap-2 sm:grid-cols-2">
                 {(evidence.data ?? []).map((e) => (
                   <div key={e.id} className="panel p-3">
-                    <div className="flex items-center justify-between"><span className="mono text-2xs text-faint">#{e.id} · {e.sourceType}</span>
-                      <span className="text-2xs" style={{ color: bpsToPct(e.credibilityBps) >= 60 ? "#46B7C6" : "#9BA4AE" }}>{e.injectionRisk === "unassessed" ? "unassessed" : `${bpsToPct(e.credibilityBps)}% credible · injection ${e.injectionRisk}`}</span>
+                    <div className="flex items-center justify-between"><span className="mono text-2xs text-faint">#{e.id} | {e.sourceType}</span>
+                      <span className="text-2xs" style={{ color: bpsToPct(e.credibilityBps) >= 60 ? "#46B7C6" : "#9BA4AE" }}>{e.injectionRisk === "unassessed" ? "unassessed" : `${bpsToPct(e.credibilityBps)}% credible | injection ${e.injectionRisk}`}</span>
                     </div>
                     <p className="mt-1 text-sm text-muted">{e.summary}</p>
-                    <div className="mt-1.5 text-xs"><ExtLink href={e.url}>{hostOf(e.url)}</ExtLink> · by {truncateHex(e.submitter, 6, 4)}</div>
+                    <div className="mt-1.5 text-xs"><ExtLink href={e.url}>{hostOf(e.url)}</ExtLink> | by {truncateHex(e.submitter, 6, 4)}</div>
                   </div>
                 ))}
               </div>
@@ -97,7 +97,7 @@ export default function IncidentDetail() {
               <div className="space-y-2">
                 {(remediations.data ?? []).map((r) => (
                   <div key={r.id} className="panel p-3">
-                    <div className="flex items-center justify-between"><span className="mono text-2xs text-faint">#{r.id}</span><span className="chip border-line bg-bg2 text-muted">{r.status}{r.completenessBps ? ` · ${bpsToPct(r.completenessBps)}% complete` : ""}{r.regressionRiskBps ? ` · regression ${bpsToPct(r.regressionRiskBps)}%` : ""}</span></div>
+                    <div className="flex items-center justify-between"><span className="mono text-2xs text-faint">#{r.id}</span><span className="chip border-line bg-bg2 text-muted">{r.status}{r.completenessBps ? ` | ${bpsToPct(r.completenessBps)}% complete` : ""}{r.regressionRiskBps ? ` | regression ${bpsToPct(r.regressionRiskBps)}%` : ""}</span></div>
                     <p className="mt-1 text-sm text-ink/90">{r.claim}</p>
                     {r.publicSummary && <p className="mt-1 text-xs text-muted">{r.publicSummary}</p>}
                     <div className="mt-1.5 text-xs"><ExtLink href={r.proofUrl}>{hostOf(r.proofUrl)}</ExtLink></div>
@@ -111,10 +111,10 @@ export default function IncidentDetail() {
               <div className="grid gap-2 sm:grid-cols-2">
                 {(challenges.data ?? []).map((c) => (
                   <div key={"c" + c.id} className="panel p-3">
-                    <div className="flex items-center justify-between"><span className="mono text-2xs text-faint">challenge #{c.id} · {c.challengeType}</span><span className="chip border-line bg-bg2 text-muted">{c.status}</span></div>
+                    <div className="flex items-center justify-between"><span className="mono text-2xs text-faint">challenge #{c.id} | {c.challengeType}</span><span className="chip border-line bg-bg2 text-muted">{c.status}</span></div>
                     <p className="mt-1 text-sm text-ink/90">{c.claim}</p>
                     {c.ruling && <p className="mt-1 text-xs text-muted">ruling: {c.ruling} ({c.confidenceDeltaBps > 0 ? "+" : ""}{(c.confidenceDeltaBps / 100).toFixed(0)}%)</p>}
-                    <div className="mt-1.5 text-xs"><ExtLink href={c.evidenceUrl}>{hostOf(c.evidenceUrl)}</ExtLink> · by {truncateHex(c.challenger, 6, 4)}</div>
+                    <div className="mt-1.5 text-xs"><ExtLink href={c.evidenceUrl}>{hostOf(c.evidenceUrl)}</ExtLink> | by {truncateHex(c.challenger, 6, 4)}</div>
                   </div>
                 ))}
                 {(appeals.data ?? []).map((a) => (
@@ -122,7 +122,7 @@ export default function IncidentDetail() {
                     <div className="flex items-center justify-between"><span className="mono text-2xs text-faint">appeal #{a.id}</span><span className="chip border-line bg-bg2 text-muted">{a.status}</span></div>
                     <p className="mt-1 text-sm text-ink/90">{a.reason}</p>
                     {a.ruling && <p className="mt-1 text-xs text-muted">ruling: {a.ruling}</p>}
-                    <div className="mt-1.5 text-xs"><ExtLink href={a.evidenceUrl}>{hostOf(a.evidenceUrl)}</ExtLink> · by {truncateHex(a.appellant, 6, 4)}</div>
+                    <div className="mt-1.5 text-xs"><ExtLink href={a.evidenceUrl}>{hostOf(a.evidenceUrl)}</ExtLink> | by {truncateHex(a.appellant, 6, 4)}</div>
                   </div>
                 ))}
               </div>
