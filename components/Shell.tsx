@@ -9,7 +9,7 @@ import { IncidentDeckLogo } from "./IncidentDeckLogo";
 import { WalletConnect } from "./WalletConnect";
 import { hasContract, CONTRACT } from "@/lib/incidentdeck";
 import { CHAIN_ID } from "@/lib/studionet";
-import { truncateHex } from "@/lib/format";
+import { Hex } from "./ui";
 
 const NAV = [
   { href: "/", label: "Operations" },
@@ -34,7 +34,7 @@ export function Shell({ children }: { children: ReactNode }) {
           <span className="hidden text-faint sm:inline">|</span>
           <span className="hidden text-muted sm:inline">Studionet <span className="mono">{CHAIN_ID}</span></span>
           <span className="hidden text-faint sm:inline">|</span>
-          {hasContract() && <span className="mono hidden text-faint md:inline">{truncateHex(CONTRACT, 8, 6)}</span>}
+          {hasContract() && <span className="hidden md:inline"><Hex value={CONTRACT} kind="contract" lead={8} tail={6} /></span>}
           <span className="ml-auto" />
           <span className="hidden text-faint md:inline">GEN testnet</span>
         </div>
